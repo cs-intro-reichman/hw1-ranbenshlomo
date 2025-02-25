@@ -3,5 +3,6 @@
 public class Ascend {
 	public static void main(String[] args) {
 		// Replace this comment with your code
+		System.out.println("first print");
 	}
 }

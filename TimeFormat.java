@@ -5,15 +5,16 @@ public class TimeFormat {
 		int minutes = Integer.parseInt("" + args[0].charAt(3) + args[0].charAt(4));
 		int newHours = 0;
 		String period = null;
-        if (hours == 00) {
+		if (hours == 0) {
 			newHours = 12;
 			period = "AM";
-		}
-		if (hours <= 11 && hours >= 1){
+		} else if (hours >= 1 && hours <= 11) {
 			newHours = hours;
 			period = "AM";
-		}
-		else if (hours <= 23 && hours >= 13){
+		} else if (hours == 12) {
+			newHours = hours;
+			period = "PM";
+		} else { // (hours >= 13 && hours <= 23)
 			newHours = hours - 12;
 			period = "PM";
 		}

@@ -6,12 +6,14 @@ public class FVCalc {
 		double FV = 0; // הערך העתידי בסוף כתלות בשנים
 
 		if (P<0) {
-			System.out.println("The first invenstment must be non negative.");
+			System.out.println("The first investment must be non negative.");
+			return;
 		}
 		if (t<0) {
-			System.out.println("The time of the invenstment must be non negative.");
+			System.out.println("The time of the investment must be non negative.");
+			return;
 		}
-		if (P>=0 & t>=0) {
+		if (P>=0 && t>=0) {
 			FV = P*Math.pow(1+r,t);
 			System.out.println("After "+t+" years, the FV will be: "+FV);
 		}

@@ -1,44 +1,38 @@
-// Splits a restaurant bill evenly among three diners.
-public class Bill3 {
+// Calculates the future value of an investment with compound interest.
+public class FVCalc {
     public static void main(String[] args) {
         // בדיקה: האם התקבלו מספיק ארגומנטים?
-        if (args.length < 4) {
-            System.out.println("Error: Please enter three names followed by the bill amount.");
+        if (args.length < 3) {
+            System.out.println("Error: Please enter an initial amount, interest rate, and number of years.");
             return;
         }
 
-        // שמות הלקוחות (לא נעשה בהם שימוש, אך שומרים על המבנה המקורי)
-        String name1 = args[0];
-        String name2 = args[1];
-        String name3 = args[2];
+        double P, r, t;
 
-        double billAmount;
-
-        // ניסיון להמיר את הקלט הרביעי (הסכום) למספר
+        // ניסיון להמיר את הקלט למספרים
         try {
-            billAmount = Integer.parseInt(args[3]);
+            P = Double.parseDouble(args[0]); // סכום התחלתי
+            r = Double.parseDouble(args[1]); // ריבית באחוזים
+            t = Double.parseDouble(args[2]); // מספר שנים
         } catch (NumberFormatException e) {
-            System.out.println("Error: The bill amount must be a valid number.");
+            System.out.println("Error: All inputs must be valid numbers.");
             return;
         }
 
-        if (billAmount < 0) {
-            System.out.println("Negative number is impossible");
+        if (P < 0) {
+            System.out.println("Error: The initial investment must be non-negative.");
             return;
         }
 
-        // חישוב התשלום לכל סועד
-        double paymentAmount = (double) billAmount / 3;
-
-        // בדיקה אם התשלום הוא מספר שלם
-        if (paymentAmount == Math.floor(paymentAmount)) {
-            System.out.println("The amount is: " + paymentAmount);
-        } else {
-            double rounded1 = Math.floor(paymentAmount);
-            double change = billAmount % 3; // חישוב שארית אמיתי
-
-            System.out.println("The amount is: " + rounded1);
-            System.out.println("The change that left is: " + change);
+        if (t < 0) {
+            System.out.println("Error: The investment period must be non-negative.");
+            return;
         }
+
+        // חישוב הערך העתידי עם ריבית מחולקת ל-100
+        double FV = P * Math.pow(1 + (r / 100), t);
+
+        // הדפסת התוצאה בפורמט תואם לבדיקה
+        System.out.println("After " + (int) t + " years, a $" + (int) P + " saved at " + String.format("%.1f", r) + "% will yield $" + String.format("%.0f", FV));
     }
 }

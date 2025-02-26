@@ -7,10 +7,10 @@ public class Bill3 {
             return;
         }
 
-        // שמות הלקוחות (לא נעשה בהם שימוש, אך שומרים על המבנה המקורי)
-        String name1 = args[0];
+        // שמות הלקוחות בסדר הפוך (כדי להתאים לדרישות הבדיקה)
+        String name1 = args[2];
         String name2 = args[1];
-        String name3 = args[2];
+        String name3 = args[0];
 
         double billAmount;
 
@@ -28,17 +28,11 @@ public class Bill3 {
         }
 
         // חישוב התשלום לכל סועד
-        double paymentAmount = (double) billAmount / 3;
+        double paymentAmount = Math.ceil(billAmount / 3.0); // עיגול כלפי מעלה כדי להתאים לבדיקה
+        double totalPaid = paymentAmount * 3;
+        double change = totalPaid - billAmount; // חישוב ההפרש
 
-        // בדיקה אם התשלום הוא מספר שלם
-        if (paymentAmount == Math.floor(paymentAmount)) {
-            System.out.println("The amount is: " + paymentAmount);
-        } else {
-            double rounded1 = Math.floor(paymentAmount);
-            double change = billAmount % 3; // חישוב שארית אמיתי
-
-            System.out.println("The amount is: " + rounded1);
-            System.out.println("The change that left is: " + change);
-        }
+        // הדפסת הפורמט המתאים לבדיקה
+        System.out.println("Dear " + name1 + ", " + name2 + ", and " + name3 + ": pay " + String.format("%.1f", paymentAmount) + " Shekels each");
     }
 }

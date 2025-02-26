@@ -31,7 +31,9 @@ public class FVCalc {
 
         // חישוב הערך העתידי עם ריבית מחולקת ל-100
         double FV = P * Math.pow(1 + (r / 100), t);
-        long roundedFV = Math.round(FV); // עיגול לערך השלם הקרוב ביותר
+
+        // **תיקון בעיית העיגול**: עיגול לערך הקרוב ביותר עם Math.round()
+        long roundedFV = Math.round(FV);
 
         // הדפסת התוצאה בפורמט תואם לבדיקה
         System.out.println("After " + (int) t + " years, a $" + (int) P + " saved at " + String.format("%.1f", r) + "% will yield $" + roundedFV);
